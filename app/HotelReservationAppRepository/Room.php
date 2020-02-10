@@ -22,9 +22,7 @@ class Room implements IRoom
     }
 
     /**
-     * Get all rooms
-     * @param $room string
-     * @return Object
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function get()
     {
@@ -32,29 +30,18 @@ class Room implements IRoom
     }
 
     /**
-     * get rooms based on query params
-     * @param $queryParmas [array]
-     * @return Object
+     * @param $id
+     * @return mixed
      */
-    public function getWithQueryParams($queryParams)
+    public function find($id)
     {
-        if (isset($queryParams['room_number']))
-        {
-            $this->model = $this->model->where('room_number', $queryParams['room_number']);
-        }
-
-        if (isset($queryParams['with']))
-        {
-            $this->model = $this->model->with($queryParams['with']);
-        }
-
-        return $this->model->paginate();
+        return $this->model::findOrFail($id);
     }
 
 
     /**
-     * @param $data array
-     * @return Object 
+     * @param $data
+     * @return mixed
      */
     public function create($data)
     {
@@ -66,9 +53,9 @@ class Room implements IRoom
      * @param $room_number [string]
      * @param $data [array]
      * @return mixed
-     * TODO test this methoD
+     * TODO test this method
      * TODO there is something wring when the application tries to update
-     * the application will fail becuase of the id remove it after findin the element
+     * the application will fail because of the id remove it after finding the element
      */
     public function update($id,$data)
     {

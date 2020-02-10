@@ -24,11 +24,11 @@ class RoomController extends Controller
      * return a list of rooms
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index()
     { 
-        $data = $this->roomService->get($request);
+        $rooms  = $this->roomService->get();
 
-        return view('rooms.index',$data);
+        return view('rooms.index',compact('rooms'));
     } 
 
     /**
@@ -38,8 +38,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $data = $this->roomType->getList();
-        return view('rooms.create',$data);
+        $roomTypes = $this->roomType->getList();
+        return view('rooms.create',compact("roomTypes"));
     }
 
     /**
@@ -49,36 +49,52 @@ class RoomController extends Controller
      */
     public function store(RoomRequest $request)
     {
-        //set session here from response of url
+        $data = $request->validated();
 
-        $data = $this->roomService->create($data);
+        if($this->roomService->create($data)){
+            return redirect(route('admin.room.create'))->with('200','Room created');
+        }
 
-        //run checks here and return data
+        return redirect(route('admin.room.create'))->with('400','Room not created');
+    }
 
-        return $data;
+    public function view($id)
+    {
+        $room       = $this->roomService->getById($id);
+        $roomTypes  = $this->roomType->getList();
+
+        return view('rooms.view',compact(['room','roomTypes']));
     }
 
     /**
      * @param RoomRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(RoomRequest $request)
+    public function update(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'room_number' => 'required|integer|unique:rooms,room_number',
+            'room_type_id' => 'required|integer',
+        ]);
 
-        return $this->roomService->update($data['id'],[
-            'room_number'=>$data['room_number'],
-            'room_type_id' => $data['room_type_id']
-            ]);
+        if($this->roomService->update((int)$request->id,$data)){
+            return redirect()->back()->with('200','Room created');
+        }
+
+        return redirect()->back()->with('400','Room not created');
     }
+
+    // room to reservation
 
     /**
      * @param RoomRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(DeleteRoomRequest $request)
+    public function delete($id)
     {
-        $data = $request->validated();
-        return $this->roomService->delete($data['id']);
+        if($this->roomService->delete($id)){
+            return redirect(route('admin.room.index'));
+        }
+        return redirect()->back();
     }
 }
