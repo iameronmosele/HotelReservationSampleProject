@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/','TestController@index');
+Route::get('/','SiteController@index')->name('site.index');
+Route::get('/about','SiteController@about')->name('site.about');
+Route::get('/book','SiteController@book')->name('site.book');
+
+
 
 
 

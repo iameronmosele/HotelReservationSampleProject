@@ -1,0 +1,21 @@
+.footer {
+    padding: 3em 0;
+}
+
+.fa, .fas {
+    font-size: 40px;
+}
+
+.block-6 .icon {
+    margin-right: 30px;
+    color: #fc3c3c;
+}
+
+.footer .heading-section {
+    margin-bottom: 14px;
+    color: #fff !important;
+}
+
+.site-section {
+    padding: 2em 0;
+}
