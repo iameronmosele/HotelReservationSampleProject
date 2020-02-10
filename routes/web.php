@@ -19,5 +19,5 @@ Route::get('/book','SiteController@book')->name('site.book');
 //    Route::get('/dashboard','DashboardController@index')->name('admin.dashboard');
 //});
 
-Auth::routes();
+//Auth::routes();
 
