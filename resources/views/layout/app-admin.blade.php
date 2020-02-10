@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href=" {{ asset('adminmart/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -41,8 +42,7 @@
                     </div>
                     <div class="col-5 align-self-center">
                         <div class="customize-input float-right">
-                            <select
-                                class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
+                            <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
                                     <option selected> {{ now() }}</option>
     
                             </select>
@@ -52,13 +52,10 @@
             </div>
 
             <div class="container-fluid">
+
                 @yield('content')
             </div>
 
-            <footer class="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>.
-            </footer>
 
         </div>
 
@@ -72,6 +69,8 @@
     <script src="{{ asset('adminmart/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('adminmart/dist/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('adminmart/dist/js/custom.js') }}"></script>
+    <script src="{{ asset('adminmart/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adminmart/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 </body>
 
 </html>

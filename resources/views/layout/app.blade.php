@@ -58,25 +58,22 @@
             </div>
 
             <div class="container-fluid">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste voluptatum eos cum officiis natus facere dolorem nemo maiores minus ipsum expedita repellendus voluptas nisi repellat, officia ipsa error eveniet blanditiis.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Iste voluptatum eos cum officiis natus facere dolorem nemo maiores minus
+                ipsum expedita repellendus voluptas nisi repellat, officia ipsa error eveniet blanditiis.
                 @yield('content')
             </div>
 
             <footer class="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>.
+
             </footer>
             
         </div>
         
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
 
 
 
-    
     <script src="{{ asset('adminmart/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('adminmart/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('adminmart/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>

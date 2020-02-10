@@ -23,118 +23,56 @@ class RoomService
      * @param $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function get($request)
+    public function get()
     {
-        $this->data =  $this->roomRepo->get();
+        return $this->roomRepo->get();
+    }
 
-        return [
-            'status' => 200,
-            'data' => $this->data
-        ];
+    public function getById($id)
+    {
+        return $this->roomRepo->find($id);
     }
 
     /**
-     * create a room
-     * @params $data array
-     * @return \Illuminate\Http\JsonResponse
+     * @param $data
+     * @return bool
      */
-    public function create($data)
+    public function create($data): bool
     {
         $this->data = $this->roomRepo->create($data);
 
-        if(!empty($this->data) && is_object($this->data))
-        {
-            return [
-                    'status'   => 200,
-                    'data'      => $this->data,
-                    'message'   => 'Room Created'
-            ];
-
+        if(!empty($this->data) && is_object($this->data)) {
+            return true;
         }
 
-        return [
-            'status'   => 400,
-            'data'      => $this->data,
-            'message'   => 'Failed to create room'
-         ];
+        return false;
     }
 
     /**
-     * Update a room
-     * @param $data [array]
-     * @return \Illuminate\Http\JsonResponse
-     * TODO : test this method and  see if it works
+     * @param $id
+     * @param $data
+     * @return bool
      */
-    public function update($id,$data)
+    public function update($id,$data):bool
     {
-        $this->data = $this->roomRepo->update($id,$data);
-
-        if($this->data){
-            return [
-                'status'   => 200,
-                'message' => 'Room  Updated'
-             ];
-            
+        if($this->roomRepo->update($id,$data)) {
+            return true;
         }
 
-        return [
-            'status'   => 400,
-            'message' => 'Failed to update room'
-        ];
-
+        return false;
     }
 
     /**
-     * Soft Delete a room
-     * @param $data [array]
-     * @return \Illuminate\Http\JsonResponse
-     * TODO : test this method and  see if it works
+     * @param $id
+     * @return bool
      */
-    public function delete($id)
+    public function delete($id) : bool
     {
-        $this->data = $this->roomRepo->delete($id);
-
-        if($this->data)
-        {
-            return [
-                'status' => 200,
-                'message' => 'Room  Deleted'
-            ];
+        if($this->roomRepo->delete($id)) {
+            return true;
         }
 
-        return [
-            'status' => 400,
-            'message' => 'Failed to delete room'
-        ];
+        return false;
     }
 
-    /**
-     * returns the query params set in the request
-     * @param $request
-     * @return array
-     */
-    public function inspectQueryParams($request)
-    {
-        if(!empty($request->input('room_number')))
-        {
-            $explodeRoomNumber = explode_value(',',$request->input('room_number'));
-
-            if(count($explodeRoomNumber) === 1)
-            {
-                $this->queryParamsOptions['room_number'] = $request->input('room_number');
-            }
-        }
-
-        if(!empty($request->input('with')))
-        {
-            $explodeWith = explode_value(',',$request->input('with'));
-
-            if(count($explodeWith) >= 1 && count($explodeWith) <= 2)
-            {
-                $this->queryParamsOptions['with'] = explode_value(',',$request->input('with'));
-            }
-        }
-
-        return $this->queryParamsOptions;
-    }
 }

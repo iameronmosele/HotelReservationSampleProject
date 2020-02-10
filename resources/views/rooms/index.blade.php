@@ -3,237 +3,47 @@
 @section('content')
 
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Rooms</h4>
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-hover">
-                            <div class="p-2 bg-primary text-center">
-                                <h1 class="font-light text-white">2,064</h1>
-                                <h6 class="text-white">Total Tickets</h6>
-                            </div>
-                        </div>
+                    <div class="table-responsive">
+                        <table id="zero_config"
+                               class="table table-striped table-bordered display no-wrap" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Type</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach ($rooms as $room)
+                                @if(isset($room->roomType))
+                                    <tr>
+                                        <td>{{ $room->room_number }}</td>
+                                        <td>{{ $room->roomType->name }}</td>
+                                        <td>{{ $room->roomType->image }}</td>
+                                        <td class="too-long-text">
+                                            <a href="{{ route('admin.room.view',['id' => $room->id]) }}" class="btn btn-danger">
+                                                <span class="fa fa-arrow-circle-right"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+
+
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-hover">
-                            <div class="p-2 bg-cyan text-center">
-                                <h1 class="font-light text-white">1,738</h1>
-                                <h6 class="text-white">Responded</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-hover">
-                            <div class="p-2 bg-success text-center">
-                                <h1 class="font-light text-white">1100</h1>
-                                <h6 class="text-white">Resolve</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-hover">
-                            <div class="p-2 bg-danger text-center">
-                                <h1 class="font-light text-white">964</h1>
-                                <h6 class="text-white">Pending</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                </div>
-                <div class="table-responsive">
-                    <table id="zero_config" class="table table-striped table-bordered no-wrap">
-                        <thead>
-                            <tr>
-                                <th>Status</th>
-                                <th>Title</th>
-                                <th>ID</th>
-                                <th>Product</th>
-                                <th>Created by</th>
-                                <th>Date</th>
-                                <th>Agent</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="badge badge-light-warning">In Progress</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">Elegant
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">276377</a></td>
-                                <td>Elegant Admin</td>
-                                <td>Eric Pratt</td>
-                                <td>2018/05/01</td>
-                                <td>Fazz</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-danger">Closed</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">AdminX
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1234251</a></td>
-                                <td>AdminX Admin</td>
-                                <td>Nirav Joshi</td>
-                                <td>2018/05/11</td>
-                                <td>Steve</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-success">Opened</span></td>
-                                <td><a href="javascript:void(0)"
-                                        class="font-weight-medium link">Admin-Pro
-                                        Theme Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1020345</a></td>
-                                <td>Admin-Pro</td>
-                                <td>Vishal Bhatt</td>
-                                <td>2018/04/01</td>
-                                <td>John</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-warning">In Progress</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">Elegant
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">7810203</a></td>
-                                <td>Elegant Admin</td>
-                                <td>Eric Pratt</td>
-                                <td>2018/01/01</td>
-                                <td>Fazz</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-warning">In Progress</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">AdminX
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">2103450</a></td>
-                                <td>AdminX Admin</td>
-                                <td>Nirav Joshi</td>
-                                <td>2018/05/01</td>
-                                <td>John</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-warning">In Progress</span></td>
-                                <td><a href="javascript:void(0)"
-                                        class="font-weight-medium link">Admin-Pro
-                                        Theme Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">2140530</a></td>
-                                <td>Admin-Pro</td>
-                                <td>Vishal Bhatt</td>
-                                <td>2018/07/01</td>
-                                <td>Steve</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-success">Opened</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">Elegant
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">4500123</a></td>
-                                <td>Elegant Admin</td>
-                                <td>Eric Pratt</td>
-                                <td>2018/05/10</td>
-                                <td>Fazz</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-danger">Closed</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">Elegant
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1230450</a></td>
-                                <td>Elegant Admin</td>
-                                <td>Eric Pratt</td>
-                                <td>2018/05/14</td>
-                                <td>John</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-danger">Closed</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">AdminX
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1240503</a></td>
-                                <td>AdminX Admin</td>
-                                <td>Nirav Joshi</td>
-                                <td>2018/02/01</td>
-                                <td>Steve</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-success">Opened</span></td>
-                                <td><a href="javascript:void(0)"
-                                        class="font-weight-medium link">Admin-Pro
-                                        Theme Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1250304</a></td>
-                                <td>Admin-Pro</td>
-                                <td>Vishal Bhatt</td>
-                                <td>2018/05/21</td>
-                                <td>Fazz</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-success">Opened</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">Elegant
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1470250</a></td>
-                                <td>Elegant Admin</td>
-                                <td>Eric Pratt</td>
-                                <td>2018/05/11</td>
-                                <td>John</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-danger">Closed</span></td>
-                                <td><a href="javascript:void(0)"
-                                        class="font-weight-medium link">Admin-Pro
-                                        Theme Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1450023</a></td>
-                                <td>Admin-Pro</td>
-                                <td>Vishal Bhatt</td>
-                                <td>2018/05/13</td>
-                                <td>Steve</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-light-warning">In Progress</span></td>
-                                <td><a href="javascript:void(0)" class="font-weight-medium link">AdminX
-                                        Theme
-                                        Side Menu Open OnClick</a></td>
-                                <td><a href="javascript:void(0)" class="font-bold link">1420530</a></td>
-                                <td>AdminX Admin</td>
-                                <td>Nirav Joshi</td>
-                                <td>2018/10/01</td>
-                                <td>Fazz</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Status</th>
-                                <th>Title</th>
-                                <th>ID</th>
-                                <th>Product</th>
-                                <th>Created by</th>
-                                <th>Date</th>
-                                <th>Agent</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <ul class="pagination float-right">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
                 
 @endsection
